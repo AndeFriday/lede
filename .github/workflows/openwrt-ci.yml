@@ -11,11 +11,6 @@ on:
   # ======== 修改部分 1: 更改触发器 ========
   workflow_dispatch:
     inputs:
-      openwrt_ref:
-        description: '要编译的 OpenWrt 分支或 Git 标签'
-        required: true
-        default: 'main'
-        type: string
       config_file:
         description: '要使用的 .config 文件路径'
         required: true
@@ -57,8 +52,6 @@ jobs:
 
       - name: Checkout OpenWrt
         uses: actions/checkout@v4
-        with:
-          ref: ${{ inputs.openwrt_ref }} # 使用手动输入的分支/标签
 
       - name: Free Disk Space (Ubuntu)
         uses: jlumbroso/free-disk-space@main
