@@ -11,11 +11,6 @@ on:
   # ======== 修改部分 1: 更改触发器 ========
   workflow_dispatch:
     inputs:
-      config_file:
-        description: '要使用的 .config 文件路径'
-        required: true
-        default: '.config'
-        type: string
       ssh_debug:
         description: '是否开启 SSH 调试 (用于排查编译错误)'
         required: true
@@ -74,9 +69,7 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: |
-          cp "${{ inputs.config_file }}" .config
-          make defconfig
+        run: make defconfig
 
       - name: Download packages
         run: make download -j16
