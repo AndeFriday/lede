@@ -8,8 +8,11 @@
 name: OpenWrt-CI
 
 on:
-  schedule:
-    - cron: 0 20 * * *
+  workflow_dispatch:
+    inputs:
+      ssh_debug:
+        description: '是否开启 SSH 调试 (用于排查编译错误)'
+        required: true
 
 permissions:
   contents: read
